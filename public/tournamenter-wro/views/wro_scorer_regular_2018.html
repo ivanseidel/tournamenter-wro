@@ -1,0 +1,220 @@
+<!-- v1.01 -->
+
+<style type="text/css">
+  .btn-group-justified {
+    display: inline-block;
+  }
+  .btn-group-justified > .input-group-addon {
+    width: 0.000001%;
+    min-width: 80px;
+  }
+</style>
+
+<div class="container" ng-show="timer.data.value == 0 && scorings.total == 0 ">
+  <div class="jumbotron">
+      <h1>Aguardando...</h1>
+      <p>Para começar a pontuar, inicie o cronômetro</p>
+      <p>Versão: wro.2018.1</p>
+    </div>
+  </div>
+</div>
+
+<div class="container" ng-hide="timer.data.value == 0 && scorings.total == 0 ">
+  <!-- LOADING SCORE -->
+  <div class="row" ng-show="team">
+    <div class="col-md-12">
+      <h4>{{team}}</h4>
+      <hr/>
+    </div>
+  </div>
+
+  <!-- SALAS -->
+  <div class="row">
+
+    <div class="col-md-6 col-sm-6">
+      <div class="thumbnail">
+        <p style="margin-top: 0px;">
+          Coloque qualquer planta <b>completamente</b> dentro de uma área cinza na <b>fazenda verde</b>, não danificada e em posição vertical.
+        </p>
+        <div class="btn-group btn-group-justified">
+          <label class="btn btn-default" ng-model="scoreData.plants_a.value"
+            btn-radio="0">Nop</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_a.value"
+            btn-radio="1">1</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_a.value"
+            btn-radio="2">2</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_a.value"
+            btn-radio="3">3</label>
+          <span class="input-group-addon">{{scorings.plants_a.value || 0}} pts</span>
+        </div>
+
+        <p style="margin-top: 16px;">
+          Coloque qualquer planta <b>parcialmente</b> dentro de uma área cinza na <b>fazenda verde</b>, não danificada e em posição vertical.
+        </p>
+        <div class="btn-group btn-group-justified">
+          <label class="btn btn-default" ng-model="scoreData.plants_b.value"
+            btn-radio="0">Nop</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_b.value"
+            btn-radio="1">1</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_b.value"
+            btn-radio="2">2</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_b.value"
+            btn-radio="3">3</label>
+          <span class="input-group-addon">{{scorings.plants_b.value || 0}} pts</span>
+        </div>
+      </div>
+
+      <div class="thumbnail">
+        <p style="margin-top: 0px;">
+          Coloque qualquer planta <b>completamente</b> dentro de uma área cinza de uma <b>fazenda amarela</b> ou <b>vermelha</b> da cor correta, combinada com dados de qualidade do solo, intacta e em posição vertical.
+        </p>
+        <div class="btn-group btn-group-justified">
+          <label class="btn btn-default" ng-model="scoreData.plants_c.value"
+            btn-radio="0">Nop</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_c.value"
+            btn-radio="1">1</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_c.value"
+            btn-radio="2">2</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_c.value"
+            btn-radio="3">3</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_c.value"
+            btn-radio="4">4</label>
+          <span class="input-group-addon">{{scorings.plants_c.value || 0}} pts</span>
+        </div>
+
+        <p style="margin-top: 16px;">
+          Coloque qualquer planta <b>parcialmente</b> dentro de uma área cinza de uma <b>fazenda amarela</b> ou <b>vermelha</b> da cor correta, combinada com dados de qualidade do solo, intacta e em posição vertical.
+        </p>
+        <div class="btn-group btn-group-justified">
+          <label class="btn btn-default" ng-model="scoreData.plants_d.value"
+            btn-radio="0">Nop</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_d.value"
+            btn-radio="1">1</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_d.value"
+            btn-radio="2">2</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_d.value"
+            btn-radio="3">3</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_d.value"
+            btn-radio="4">4</label>
+          <span class="input-group-addon">{{scorings.plants_d.value || 0}} pts</span>
+        </div>
+      </div>
+
+      <div class="thumbnail">
+        <p style="margin-top: 0px;">
+          Restam 5 plantas tocando os quadrados cinzas em torno da localização inicial
+        </p>
+        <div class="btn-group btn-group-justified">
+          <label class="btn btn-default" ng-model="scoreData.plants_remain.a"
+            btn-radio="0">Não</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_remain.a"
+            btn-radio="1">Sim</label>
+        </div>
+
+        <p style="margin-top: 16px;">
+           Pelo menos uma planta em uma fazenda pontua
+        </p>
+        <div class="btn-group btn-group-justified">
+          <label class="btn btn-default" ng-model="scoreData.plants_remain.b"
+            btn-radio="0">Não</label>
+          <label class="btn btn-default" ng-model="scoreData.plants_remain.b"
+            btn-radio="1">Sim</label>
+        </div>
+
+        <div class="btn-group btn-group-justified" style="margin-top: 16px;">
+          <span class="input-group-addon">Total:</span>
+          <span class="input-group-addon">{{scorings.plants_remain_total.value || 0}} pts</span>
+        </div>
+      </div>
+
+      
+
+    </div>
+
+    <div class="col-md-6 col-sm-6">
+
+      <div class="thumbnail">
+        <p style="margin-top: 0px;">
+          Todos os blocos de dados de qualidade do solo tocam o quadrado branco em seus locais iniciais
+        </p>
+        <div class="btn-group btn-group-justified">
+          <label class="btn btn-default" ng-model="scoreData.data_quality.a"
+            btn-radio="0">Não</label>
+          <label class="btn btn-default" ng-model="scoreData.data_quality.a"
+            btn-radio="1">Sim</label>
+          <!-- <span class="input-group-addon">{{scorings.data_quality.value || 0}} pts</span> -->
+        </div>
+
+        <p style="margin-top: 16px;">
+           Pelo menos uma planta em uma fazenda pontua
+        </p>
+        <div class="btn-group btn-group-justified">
+          <label class="btn btn-default" ng-model="scoreData.data_quality.b"
+            btn-radio="0">Não</label>
+          <label class="btn btn-default" ng-model="scoreData.data_quality.b"
+            btn-radio="1">Sim</label>
+          <!-- <span class="input-group-addon">{{scorings.data_quality.value || 0}} pts</span> -->
+        </div>
+
+        <p style="margin-top: 16px;">
+          Nenhuma planta está colocada em uma fazenda não combinada com os dados de qualidade de solo
+        </p>
+        <div class="btn-group btn-group-justified">
+          <label class="btn btn-default" ng-model="scoreData.data_quality.c"
+            btn-radio="0">Não</label>
+          <label class="btn btn-default" ng-model="scoreData.data_quality.c"
+            btn-radio="1">Sim</label>
+          <!-- <span class="input-group-addon">{{scorings.data_quality.value || 0}} pts</span> -->
+        </div>
+
+        <div class="btn-group btn-group-justified" style="margin-top: 16px;">
+          <span class="input-group-addon">Total:</span>
+          <span class="input-group-addon">{{scorings.data_quality_total.value || 0}} pts</span>
+        </div>
+      </div>
+
+      <div class="thumbnail">
+        <p style="margin-top: 0px;">
+          O robô danifica qualquer parede ou move qualquer parede a partir de sua localização inicial
+        </p>
+        <div class="btn-group btn-group-justified">
+          <label class="btn btn-default" ng-model="scoreData.wall_damage.value"
+            btn-radio="0">Nop</label>
+          <label class="btn btn-default" ng-model="scoreData.wall_damage.value"
+            btn-radio="1">1</label>
+          <label class="btn btn-default" ng-model="scoreData.wall_damage.value"
+            btn-radio="2">2</label>
+          <label class="btn btn-default" ng-model="scoreData.wall_damage.value"
+            btn-radio="3">3</label>
+          <span class="input-group-addon">{{scorings.wall_damage.value || 0}} pts</span>
+        </div>
+      </div> 
+
+      <div class="thumbnail">
+        <p style="margin-top: 0px;">
+          O robô para por completo na Área de Inicio e Fim. Somente obtem estes pontos se forem atribuidas outras pontuações
+        </p>
+        <div class="btn-group btn-group-justified">
+          <label class="btn btn-default" ng-model="scoreData.ending.value"
+            btn-radio="0">Não</label>
+          <label class="btn btn-default" ng-model="scoreData.ending.value"
+            btn-radio="1">Sim</label>
+          <span class="input-group-addon">{{scorings.ending.value || 0}} pts</span>
+        </div>
+
+        <div
+          style="margin-top: 44px;"
+          class="btn btn-lg btn-block navbar-btn btn-danger"
+          ng-click="timer.stop();"
+          ng-class="{disabled: timer.data.state == 'STOPPED'}">
+          <span class="glyphicon glyphicon-pause"></span> Parar Tempo
+        </div>
+      </div> 
+    </div>
+  </div>
+
+  <div class="row">
+
+  </div>
+
+</div>

@@ -1,5 +1,114 @@
 var app = angular.module('app.scorers', [])
 
+.factory('WroScorerRegular2018', function (){
+
+  var model = {
+    plants_a: {
+      value: 0,
+    },
+
+    plants_b: {
+      value: 0,
+    },
+
+    plants_c: {
+      value: 0,
+    },
+
+    plants_d: {
+      value: 0,
+    },
+
+    data_quality: {
+      a: 0,
+      b: 0,
+      c: 0,
+    },
+
+    data_quality_total: {
+      value: 0,
+    },
+
+    plants_remain: {
+      a: 0,
+      b: 0,
+    },
+
+    plants_remain_total: {
+      value: 0,
+    },
+
+    wall_damage: {
+      value: 0,
+    },
+
+    ending: {
+      value: 0,
+    },
+  };
+
+  var scorings ={
+    plants_a: [0, 10, 20, 30],
+    plants_b: [0,  5, 10, 15],
+    plants_c: [0, 25, 50, 75, 100],
+    plants_d: [0, 10, 20, 30, 40],
+    data_quality: [0, 0],
+    data_quality_total: [0, 25],
+    plants_remain: [0, 0],
+    plants_remain_total: [0, 15],
+    wall_damage: [0, -5, -10, -15],
+    ending: [0, 10],
+  }
+
+  return {
+    view: 'views/wro_scorer_regular_2018.html?r='+Math.random(),
+    model: model,
+    scorings: scorings,
+    totalTime: 120,
+    score: function (model){
+      var scored = {
+        total: 0,
+      };
+
+      if (model.data_quality.a && model.data_quality.b && model.data_quality.c) {
+        model.data_quality_total.value = 1
+      } else {
+        model.data_quality_total.value = 0
+      }
+
+      if (model.plants_remain.a && model.plants_remain.b) {
+        model.plants_remain_total.value = 1
+      } else {
+        model.plants_remain_total.value = 0
+      }
+
+      for(var k in model){
+        scored[k] = {};
+        var group = model[k];
+
+        for(var i in group){
+          var mission = group[i];
+          if(mission === false) mission = 0;
+          if(mission === true) mission = 1;
+
+          var pointsGroup = scorings[k];
+          var points;
+          if(typeof pointsGroup == 'number'){
+            points = pointsGroup * mission;
+          }else{
+            points = scorings[k][mission];
+          }
+
+          scored[k][i] = points
+          scored.total += points || 0;
+        }
+      }
+
+      return scored;
+    }
+  }
+})
+
 .factory('RescueScorer2018Regional', function (){
 
   var model = {

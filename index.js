@@ -7,7 +7,7 @@ var request = require('request')
 
 var auth = app.helpers.isAuthenticated
 var package = require('./package.json')
-var SyncModule = require('./SyncModule')
+// var SyncModule = require('./SyncModule')
 
 var hasUpdate = null
 
@@ -30,33 +30,33 @@ module.exports = {
 
   menus: [
     {
-      name: 'Plugin OBR',
+      name: 'Plugin WRO',
       childs: [
         {
-          path: '/tournamenter-obr',
+          path: '/tournamenter-wro',
           name: 'Pontuador',
         },
-        {
-          path: '/obr-desafio',
-          name: 'Desafio Surpresa',
-        },
-        {
-          path: '/obr-config',
-          name: 'Configurar (Importar/Exportar)',
-        },
-        {
-          path: '/obr-rounds',
-          name: 'Gerar Tabela de Horários',
-        },
-        {
-          path: '/ManualOBRTournamenter.pdf',
-          name: 'Manual (.pdf)',
-        },
+        // {
+        //   path: '/obr-desafio',
+        //   name: 'Desafio Surpresa',
+        // },
+        // {
+        //   path: '/obr-config',
+        //   name: 'Configurar (Importar/Exportar)',
+        // },
+        // {
+        //   path: '/obr-rounds',
+        //   name: 'Gerar Tabela de Horários',
+        // },
+        // {
+        //   path: '/ManualOBRTournamenter.pdf',
+        //   name: 'Manual (.pdf)',
+        // },
       ],
       order: 6
     },
     // Realtime badge for Sincronization with Sistema Olimpo
-    SyncModule.statusMenu
+    // SyncModule.statusMenu
     // {name: 'Pontuador', path: '/tournamenter-obr', order: 6},
     // {name: 'Importador Sistema Olimpo', path: '/tournamenter-obr/importar.html', order: 7},
   ],
@@ -68,10 +68,10 @@ module.exports = {
     var TableModel = require(tableModelPath)
     
     // Inject OBR Scoring systems
-    TableModel.evaluateMethods.obr2017 = require('./sorters/obr2017');
+    TableModel.evaluateMethods.obr2017 = require('./sorters/wro2018');
 
     // Set 'obr2017' as default sorting algorithm
-    TableModel.attributes.evaluateMethod.defaultsTo = 'obr2017';
+    TableModel.attributes.evaluateMethod.defaultsTo = 'wro2018';
     
     // Set columns count to 6 as default, with names
     TableModel.attributes.columns.defaultsTo = 6;
@@ -82,30 +82,30 @@ module.exports = {
     TableModel.attributes.headerTeam.defaultsTo = 'Equipe';
 
     // Update Default Tournamenter Logo
-    app.config.appLogo = path.join(__dirname, '/public/tournamenter-obr/obr.png')
+    app.config.appLogo = path.join(__dirname, '/public/tournamenter-wro/wro.jpg')
 
     // Add views path to view engine
-    var viewsFolder = path.join(__dirname, '/public/tournamenter-obr')
+    var viewsFolder = path.join(__dirname, '/public/tournamenter-wro')
     var views = app.server.get('views').push(viewsFolder)
 
     // Add route to change configs/get
-    app.server.all('/obr-sync',       auth, SyncModule.updateConfig)
-    app.server.all('/obr-last-sync',  auth, SyncModule.getLastSync)
+    // app.server.all('/obr-sync',       auth, SyncModule.updateConfig)
+    // app.server.all('/obr-last-sync',  auth, SyncModule.getLastSync)
 
     // Render Configuration screen
-    app.server.get('/obr-config',     auth, function (req, res) {
-      return res.render('obr-config', { path: req.route.path });
-    })
+    // app.server.get('/obr-config',     auth, function (req, res) {
+    //   return res.render('obr-config', { path: req.route.path });
+    // })
 
     // Render desafio screen
-    app.server.get('/obr-desafio',    auth, function (req, res) {
-      return res.render('obr-desafio', { path: req.route.path });
-    })
+    // app.server.get('/obr-desafio',    auth, function (req, res) {
+    //   return res.render('obr-desafio', { path: req.route.path });
+    // })
 
     // Render Gerador de rounds screen
-    app.server.get('/obr-rounds',    auth, function (req, res) {
-      return res.render('obr-rounds', { path: req.route.path });
-    })
+    // app.server.get('/obr-rounds',    auth, function (req, res) {
+    //   return res.render('obr-rounds', { path: req.route.path });
+    // })
 
     // Set home screen to show a big huge button to guide judges
     app.server.get('/',     auth, function (req, res) {
@@ -135,7 +135,7 @@ module.exports = {
       if (newestVersion != currentVersion) {
         hasUpdate = newestVersion
         console.log()
-        console.log('>>>>>>>>>> NOVO UPDATE PARA O tournamenter-obr')
+        console.log('>>>>>>>>>> NOVO UPDATE PARA O tournamenter-wro')
         console.log('>>>>>>>>>> Versão: '+newestVersion)
         console.log()
       }
