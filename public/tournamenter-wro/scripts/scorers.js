@@ -42,6 +42,10 @@ var app = angular.module('app.scorers', [])
       value: 0,
     },
 
+    challenge: {
+      value: 0,
+    },
+
     ending: {
       value: 0,
     },
@@ -57,6 +61,7 @@ var app = angular.module('app.scorers', [])
     plants_remain: [0, 0],
     plants_remain_total: [0, 15],
     wall_damage: [0, -5, -10, -15],
+    challenge: [0, 30],
     ending: [0, 10],
   }
 

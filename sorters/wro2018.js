@@ -4,7 +4,7 @@ module.exports = function () {
     let minScoreTime = 0;
     let sumScore = 0;
     let sumScoreTime = 0;
-    let scoreCount = 0;
+    let scoreCount = -1;
 
     for (var k in scores) {
       var i = k*1;
@@ -24,7 +24,7 @@ module.exports = function () {
       sumScoreTime += time;
     }
 
-    let avgScore = (sumScore - minScore) / scoreCount
+    let avgScore = (sumScore - minScore) / (scoreCount > 0 ? scoreCount : 1)
     let timeSum = sumScoreTime - minScoreTime
     return [avgScore, -timeSum]
 

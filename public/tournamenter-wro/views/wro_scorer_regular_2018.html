@@ -191,7 +191,19 @@
       </div> 
 
       <div class="thumbnail">
+
         <p style="margin-top: 0px;">
+          Completou o Desafio surpresa
+        </p>
+        <div class="btn-group btn-group-justified">
+          <label class="btn btn-default" ng-model="scoreData.challenge.value"
+            btn-radio="0">Não</label>
+          <label class="btn btn-default" ng-model="scoreData.challenge.value"
+            btn-radio="1">Sim</label>
+          <span class="input-group-addon">{{scorings.challenge.value || 0}} pts</span>
+        </div>
+
+        <p style="margin-top: 16px;">
           O robô para por completo na Área de Inicio e Fim. Somente obtem estes pontos se forem atribuidas outras pontuações
         </p>
         <div class="btn-group btn-group-justified">
@@ -203,7 +215,7 @@
         </div>
 
         <div
-          style="margin-top: 44px;"
+          style="margin-top: 16px;"
           class="btn btn-lg btn-block navbar-btn btn-danger"
           ng-click="timer.stop();"
           ng-class="{disabled: timer.data.state == 'STOPPED'}">

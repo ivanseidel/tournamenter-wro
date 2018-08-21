@@ -68,15 +68,15 @@ module.exports = {
     var TableModel = require(tableModelPath)
     
     // Inject OBR Scoring systems
-    TableModel.evaluateMethods.obr2017 = require('./sorters/wro2018');
+    TableModel.evaluateMethods.wro2018 = require('./sorters/wro2018');
 
-    // Set 'obr2017' as default sorting algorithm
+    // Set 'wro2018' as default sorting algorithm
     TableModel.attributes.evaluateMethod.defaultsTo = 'wro2018';
     
     // Set columns count to 6 as default, with names
-    TableModel.attributes.columns.defaultsTo = 6;
+    TableModel.attributes.columns.defaultsTo = 10;
     TableModel.attributes.headerScore.defaultsTo = 
-     'Round 1, Tempo 1, Round 2, Tempo 2, Round 3, Tempo 3';
+     'Round 1, Tempo 1, Round 2, Tempo 2, Round 3, Tempo 3, Round 4, Tempo 4, Round 5, Tempo 5';
 
     // Set default to Portugese on columns
     TableModel.attributes.headerTeam.defaultsTo = 'Equipe';
@@ -113,7 +113,7 @@ module.exports = {
     })
 
     // Init SyncModule
-    SyncModule.init(app)
+    // SyncModule.init(app)
 
     // Check uptades on this package
     request({

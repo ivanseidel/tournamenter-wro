@@ -1,6 +1,6 @@
 {
   "name": "tournamenter-wro",
-  "version": "4.1.5",
+  "version": "2018.0.6",
   "description": "Plugin do WRO para o Tournamenter.",
   "main": "index.js",
   "scripts": {
